@@ -21,12 +21,18 @@
   for(var i=0;i<totalno;i++) {
   s = urls[i];
   if (s) {
+  if (document.getElementById("serial").checked == false && document.getElementById("hostname").checked == false) {
+      document.getElementById("demo").innerHTML = "*WARNING* You did not make a selection";
+      return false;
+  }
       if (document.getElementById("serial").checked) {
           if (s.substr(0,8)!='https://') s = 'https://'+ilo+s+domain;
           window.open(s);
+          document.getElementById("demo").innerHTML = ""
   }else if (document.getElementById("hostname").checked) {
       if (s.substr(0,8)!='https://') s = 'https://'+s+domain;
       window.open(s);    
+      document.getElementById("demo").innerHTML = ""
   }
   }
   }
