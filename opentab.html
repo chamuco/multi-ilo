@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>iLO Access</title>
+</head>
+<body>
+ <form method="post" action="">
+  Enter Serial Number or hostname:<br>
+  <textarea autofocus rows="30" cols="25" name="list_urls" id="list_urls"></textarea><br>
+  <input type="radio" name="type" value="serial" id="serial"> Serial Number <input type="radio" name="type" value="hostname" id="hostname"> Hostname<br><br> 
+  <button type="button" onclick="open_all()">Submit</button>
+  <p id="demo"></p>
+  <script>
+  function open_all() {
+  var urls = document.getElementById("list_urls").value;
+  var urls = urls.split('\n');
+  var totalno = urls.length;
+  var domain = ".oob.expecn.com"
+  var ilo = "ilo"
+  var s;
+  for(var i=0;i<totalno;i++) {
+  s = urls[i];
+  if (s) {
+      if (document.getElementById("serial").checked) {
+          if (s.substr(0,8)!='https://') s = 'https://'+ilo+s+domain;
+          window.open(s);
+  }else if (document.getElementById("hostname").checked) {
+      if (s.substr(0,8)!='https://') s = 'https://'+s+domain;
+      window.open(s);    
+  }
+  }
+  }
+  return false;
+  }
+  </script>
+</body>
+</html>
